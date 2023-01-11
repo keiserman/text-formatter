@@ -421,7 +421,21 @@ video {
   display: none;
 }
 
-*{
+@media (min-width: 768px){
+  html{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px){
+  html{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+button{
   transition-property: all;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -472,12 +486,16 @@ video {
 
 .keyboard-button{
   border-radius: 0.25rem;
-  border-width: 1px;
+  border-width: 2px;
+  border-bottom-width: 4px;
   --tw-border-opacity: 1;
   border-color: rgb(148 163 184 / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
-  padding: 0.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
@@ -711,8 +729,3 @@ video {
   --tw-text-opacity: 1;
   color: rgb(71 85 105 / var(--tw-text-opacity));
 }
-
-html {
-  font-size:22px;
-}
-  
