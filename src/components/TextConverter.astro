@@ -1,0 +1,136 @@
+<div class="bg-gray-100 p-8 font-sans">
+  <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Text Case Converter</h1>
+    <textarea
+      id="textInput"
+      class="w-full h-40 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4"
+      placeholder="Enter your text here"></textarea>
+    <div class="space-x-2">
+      <button
+        id="sentenceCaseBtn"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >Sentence case</button
+      >
+      <button
+        id="lowerCaseBtn"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >lower case</button
+      >
+      <button
+        id="upperCaseBtn"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >UPPER CASE</button
+      >
+      <button
+        id="capitalizedCaseBtn"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >Capitalized Case</button
+      >
+      <button
+        id="alternatingCaseBtn"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >aLtErNaTiNg cAsE</button
+      >
+      <button
+        id="titleCaseBtn"
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+        >Title Case</button
+      >
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function convertText(caseType) {
+      let text = document.getElementById("textInput").value;
+
+      switch (caseType) {
+        case "sentence":
+          text = text
+            .toLowerCase()
+            .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
+          break;
+        case "lower":
+          text = text.toLowerCase();
+          break;
+        case "upper":
+          text = text.toUpperCase();
+          break;
+        case "capitalized":
+          text = text.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+          break;
+        case "alternating":
+          text = text
+            .split("")
+            .map((c, i) => (i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()))
+            .join("");
+          break;
+        case "title":
+          const smallWords = [
+            "the",
+            "to",
+            "and",
+            "a",
+            "an",
+            "in",
+            "on",
+            "at",
+            "for",
+            "by",
+            "with",
+            "of",
+            "is",
+          ];
+          text = text.toLowerCase().replace(/\b\w+/g, function (word, index) {
+            if (index === 0 || !smallWords.includes(word)) {
+              return word.charAt(0).toUpperCase() + word.slice(1);
+            } else {
+              return word;
+            }
+          });
+          break;
+        default:
+          break;
+      }
+
+      document.getElementById("textInput").value = text;
+    }
+
+    // Add event listeners to buttons
+    document
+      .getElementById("sentenceCaseBtn")
+      .addEventListener("click", function () {
+        convertText("sentence");
+      });
+
+    document
+      .getElementById("lowerCaseBtn")
+      .addEventListener("click", function () {
+        convertText("lower");
+      });
+
+    document
+      .getElementById("upperCaseBtn")
+      .addEventListener("click", function () {
+        convertText("upper");
+      });
+
+    document
+      .getElementById("capitalizedCaseBtn")
+      .addEventListener("click", function () {
+        convertText("capitalized");
+      });
+
+    document
+      .getElementById("alternatingCaseBtn")
+      .addEventListener("click", function () {
+        convertText("alternating");
+      });
+
+    document
+      .getElementById("titleCaseBtn")
+      .addEventListener("click", function () {
+        convertText("title");
+      });
+  });
+</script>
