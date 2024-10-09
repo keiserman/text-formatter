@@ -1,46 +1,35 @@
-<div class="bg-gray-100 p-8 font-sans">
+---
+import Button from "./Button.astro";
+---
+
+<div class="bg-zinc-100 p-8 font-sans">
   <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-4">Text Case Converter</h1>
     <textarea
       id="textInput"
-      class="w-full h-40 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4"
+      class="w-full h-40 p-3 border border-zinc-300 rounded-md mb-4"
       placeholder="Enter your text here"></textarea>
-    <div class="space-x-2">
-      <button
-        id="sentenceCaseBtn"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-        >Sentence case</button
-      >
-      <button
-        id="lowerCaseBtn"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-        >lower case</button
-      >
-      <button
-        id="upperCaseBtn"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-        >UPPER CASE</button
-      >
-      <button
+    <div class="flex gap-2 flex-wrap">
+      <Button id="sentenceCaseBtn" text="Sentence Case" caseType="sentence" />
+      <Button id="lowerCaseBtn" text="lower case" caseType="lower" />
+      <Button id="upperCaseBtn" text="UPPER CASE" caseType="upper" />
+      <Button
         id="capitalizedCaseBtn"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-        >Capitalized Case</button
-      >
-      <button
+        text="Capitalized Case"
+        caseType="capitalized"
+      />
+      <Button
         id="alternatingCaseBtn"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-        >aLtErNaTiNg cAsE</button
-      >
-      <button
-        id="titleCaseBtn"
-        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
-        >Title Case</button
-      >
+        text="aLtErNaTiNg cAsE"
+        caseType="alternating"
+      />
+      <Button id="titleCaseBtn" text="Title Case" caseType="title" />
     </div>
   </div>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Function to convert text to different cases
     function convertText(caseType) {
       let text = document.getElementById("textInput").value;
 
@@ -96,41 +85,12 @@
       document.getElementById("textInput").value = text;
     }
 
-    // Add event listeners to buttons
-    document
-      .getElementById("sentenceCaseBtn")
-      .addEventListener("click", function () {
-        convertText("sentence");
+    // Dynamically add event listeners to all buttons
+    document.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", function () {
+        const caseType = button.id.replace("CaseBtn", "").toLowerCase();
+        convertText(caseType);
       });
-
-    document
-      .getElementById("lowerCaseBtn")
-      .addEventListener("click", function () {
-        convertText("lower");
-      });
-
-    document
-      .getElementById("upperCaseBtn")
-      .addEventListener("click", function () {
-        convertText("upper");
-      });
-
-    document
-      .getElementById("capitalizedCaseBtn")
-      .addEventListener("click", function () {
-        convertText("capitalized");
-      });
-
-    document
-      .getElementById("alternatingCaseBtn")
-      .addEventListener("click", function () {
-        convertText("alternating");
-      });
-
-    document
-      .getElementById("titleCaseBtn")
-      .addEventListener("click", function () {
-        convertText("title");
-      });
+    });
   });
 </script>
