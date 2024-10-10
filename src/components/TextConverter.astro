@@ -1,8 +1,4 @@
----
-import Button from "./Button.astro";
----
-
-<div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md grid gap-4">
+<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md grid gap-4">
   <h1 class="text-2xl font-bold">Text Case Converter</h1>
   <textarea
     id="textInput"
@@ -10,47 +6,17 @@ import Button from "./Button.astro";
     placeholder="Enter your text here"></textarea>
 
   <div class="flex gap-2 flex-wrap">
-    <Button
-      size="small"
-      variant="secondary"
-      text="Sentence Case"
-      data-sentence-case
-    />
-    <Button
-      size="small"
-      variant="secondary"
-      text="lower case"
-      data-lower-case
-    />
-    <Button
-      size="small"
-      variant="secondary"
-      text="UPPER CASE"
-      data-upper-case
-    />
-    <Button
-      size="small"
-      variant="secondary"
-      text="Capitalized Case"
-      data-capitalized-case
-    />
-    <Button
-      size="small"
-      variant="secondary"
-      text="aLtErNaTiNg cAsE"
-      data-alternating-case
-    />
-    <Button
-      size="small"
-      variant="secondary"
-      text="Title Case"
-      data-title-case
-    />
+    <a class="button is-small" data-sentence-case>Sentence case</a>
+    <a class="button is-small" data-lower-case>lower case</a>
+    <a class="button is-small" data-upper-case>UPPER CASE</a>
+    <a class="button is-small" data-capitalized-case>Capitalized Case</a>
+    <a class="button is-small" data-alternating-case>aLtErNaTiNg cAsE</a>
+    <a class="button is-small" data-title-case>Title Case</a>
   </div>
 
   <div class="grid grid-cols-2 gap-2">
-    <Button text="Copy to Clipboard" data-copy-to-clipboard />
-    <Button variant="secondary" text="Clear" data-clear-text />
+    <a class="button is-primary" data-copy-to-clipboard>Copy to Clipboard</a>
+    <a class="button" data-clear-text>Clear</a>
   </div>
 </div>
 
