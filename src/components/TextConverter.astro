@@ -6,7 +6,7 @@ import Button from "./Button.astro";
   <h1 class="text-2xl font-bold">Text Case Converter</h1>
   <textarea
     id="textInput"
-    class="w-full h-40 p-3 border border-zinc-300 rounded-md"
+    class="w-full h-40 p-3 border border-zinc-300 rounded-md shadow-sm"
     placeholder="Enter your text here"></textarea>
 
   <div class="flex gap-2 flex-wrap">
@@ -50,7 +50,7 @@ import Button from "./Button.astro";
 
   <div class="grid grid-cols-2 gap-2">
     <Button text="Copy to Clipboard" data-copy-to-clipboard />
-    <Button text="Clear" data-clear-text />
+    <Button variant="secondary" text="Clear" data-clear-text />
   </div>
 </div>
 
