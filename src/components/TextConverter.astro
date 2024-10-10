@@ -1,4 +1,6 @@
-<div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md grid gap-4">
+<div
+  class="max-w-3xl w-full mx-auto bg-white p-6 rounded-lg shadow-md grid gap-4"
+>
   <h1 class="text-2xl font-bold">Text Case Converter</h1>
   <textarea
     id="textInput"
@@ -12,6 +14,9 @@
     <a class="button is-small" data-capitalized-case>Capitalized Case</a>
     <a class="button is-small" data-alternating-case>aLtErNaTiNg cAsE</a>
     <a class="button is-small" data-title-case>Title Case</a>
+    <a class="button is-small" data-remove-breaks>Remove Line Breaks</a>
+    <a class="button is-small" data-remove-double-spaces>Remove Double Spaces</a
+    >
   </div>
 
   <div class="grid grid-cols-2 gap-2">
@@ -36,6 +41,11 @@
       "[data-alternating-case]"
     );
     const titleCaseBtn = document.querySelector("[data-title-case]");
+    const removeBreaksBtn = document.querySelector("[data-remove-breaks]");
+    const removeDoubleSpacesBtn = document.querySelector(
+      "[data-remove-double-spaces]"
+    );
+
     const copyToClipboardBtn = document.querySelector(
       "[data-copy-to-clipboard]"
     );
@@ -107,6 +117,18 @@
             return word;
           }
         });
+      textArea.value = text;
+    });
+
+    // Remove Line Breaks
+    removeBreaksBtn?.addEventListener("click", () => {
+      let text = textArea.value.split(/\r?\n/).join(" ");
+      textArea.value = text;
+    });
+
+    // Remove Line Breaks
+    removeDoubleSpacesBtn?.addEventListener("click", () => {
+      let text = textArea.value.split(/\s+/).join(" ");
       textArea.value = text;
     });
 
