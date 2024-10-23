@@ -17,6 +17,8 @@
     <a class="button is-small" data-remove-breaks>Remove Line Breaks</a>
     <a class="button is-small" data-remove-double-spaces>Remove Double Spaces</a
     >
+    <a class="button is-small" data-add-dashes>Add Dashes</a>
+    <a class="button is-small" data-remove-dashes>Remove Dashes</a>
   </div>
 
   <div class="grid grid-cols-2 gap-2">
@@ -45,13 +47,14 @@
     const removeDoubleSpacesBtn = document.querySelector(
       "[data-remove-double-spaces]"
     );
+    const addDashesBtn = document.querySelector("[data-add-dashes]");
+    const removeDashesBtn = document.querySelector("[data-remove-dashes]");
 
     const copyToClipboardBtn = document.querySelector(
       "[data-copy-to-clipboard]"
     );
     const clearTextBtn = document.querySelector("[data-clear-text]");
 
-    // Sentence Case
     sentenceCaseBtn?.addEventListener("click", () => {
       let text = textArea.value.toLowerCase();
       text = text.replace(/(^\s*\w|[.!?]\s*\w)/g, (match) =>
@@ -60,19 +63,16 @@
       textArea.value = text;
     });
 
-    // Lower Case
     lowerCaseBtn?.addEventListener("click", () => {
       let text = textArea.value.toLowerCase();
       textArea.value = text;
     });
 
-    // Upper Case
     upperCaseBtn?.addEventListener("click", () => {
       let text = textArea.value.toUpperCase();
       textArea.value = text;
     });
 
-    // Capitalized Case
     capitalizedCaseBtn?.addEventListener("click", () => {
       let text = textArea.value
         .toLowerCase()
@@ -80,7 +80,6 @@
       textArea.value = text;
     });
 
-    // Alternating Case
     alternatingCaseBtn?.addEventListener("click", () => {
       let text = textArea.value
         .split("")
@@ -91,7 +90,6 @@
       textArea.value = text;
     });
 
-    // Title Case
     titleCaseBtn?.addEventListener("click", () => {
       const smallWords = [
         "the",
@@ -120,19 +118,36 @@
       textArea.value = text;
     });
 
-    // Remove Line Breaks
     removeBreaksBtn?.addEventListener("click", () => {
       let text = textArea.value.split(/\r?\n/).join(" ");
       textArea.value = text;
     });
 
-    // Remove Line Breaks
     removeDoubleSpacesBtn?.addEventListener("click", () => {
       let text = textArea.value.split(/\s+/).join(" ");
       textArea.value = text;
     });
 
-    // Copy to Clipboard
+    addDashesBtn?.addEventListener("click", () => {
+      let text = textArea.value;
+
+      text = text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+$/g, "");
+
+      textArea.value = text;
+    });
+
+    removeDashesBtn?.addEventListener("click", () => {
+      let text = textArea.value;
+
+      text = text.replace(/-+/g, " ");
+
+      textArea.value = text;
+    });
+
     copyToClipboardBtn?.addEventListener(
       "click",
       function (this: HTMLButtonElement) {
@@ -148,7 +163,6 @@
       }
     );
 
-    // Clear Text
     clearTextBtn?.addEventListener("click", () => {
       textArea.value = "";
     });
